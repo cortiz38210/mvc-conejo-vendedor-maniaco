@@ -30,8 +30,8 @@ scene: [SceneA, SceneB, SceneC],
 physics: {
     default: "arcade",
     arcade: {
-        debug: true,
-        gravity: { y: 300 } // Con gravedad
+        debug: false,
+        gravity: { y: 1000 } // Con gravedad
     }
 }
 

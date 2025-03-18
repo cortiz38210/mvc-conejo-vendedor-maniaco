@@ -7,6 +7,7 @@ export default class SceneA extends Phaser.Scene {
     constructor() {
         super({ key: 'SceneA' });
         this.humedad = 0;
+        this.cultivos = 0;
     }
 
     preload() {
@@ -23,12 +24,12 @@ export default class SceneA extends Phaser.Scene {
         this.load.image('TheFarm', 'farm.png'); 
         this.load.image('Nube', 'cloud.png'); 
         this.load.image('StoreOne', 'onecoin.png'); 
-
         this.load.image('Gota', 'water.png');
-
+        this.load.image('Zanahoria', 'carrot.png');
     }
 
     create() {
+
         let graphics = this.add.graphics();       
         graphics.fillStyle('0x0000FF', 1);        
         graphics.fillRect(70, 70, 1550, 730);
@@ -39,17 +40,10 @@ export default class SceneA extends Phaser.Scene {
 
          // Tierra de Cultivo con físicas
         this.TierraCultivo = this.physics.add.image(240, 700, 'TheFarm')
-        .setDisplaySize(450, 100)
+        .setDisplaySize(450, 80)
         .setDepth(1)
         .setImmovable(true); // La hace estática para que no se mueva con colisiones
         this.TierraCultivo.body.allowGravity = false; 
-
-         //TierraCultivo
-         this.TierraCultivo = this.add.image(240, 700, 'TheFarm').setDisplaySize(450, 100); 
-
-         //Nubesita
-         this.Nubesita = this.add.image(240, 300, 'Nube').setScale(0.5);
-
 
          //StoreOne
          this.Tienda01 = this.add.image(1400, 520, 'StoreOne').setScale(0.45);         
@@ -77,7 +71,6 @@ export default class SceneA extends Phaser.Scene {
             .setInteractive() // Hacer la imagen interactiva
             .on('pointerdown', () => {
                 this.scene.start('SceneD'); // Menu de la tienda
-
             });   
 
         // Grupo de gotas
@@ -94,12 +87,12 @@ export default class SceneA extends Phaser.Scene {
         });
        
         // Nube interactiva que genera gotas
-        this.Nubesita = this.add.image(240, 300, 'Nube')
+        this.Nubesita = this.add.image(240, 150, 'Nube')
             .setScale(0.5)
             .setDepth(1)
             .setInteractive()
             .on('pointerdown', () => {
-                let nuevaGota = this.physics.add.image(240, 300, 'Gota')
+                let nuevaGota = this.physics.add.image(Phaser.Math.Between(150, 350), 150, 'Gota')
                     .setScale(0.25)
                     .setDepth(0);
                 
@@ -108,12 +101,21 @@ export default class SceneA extends Phaser.Scene {
                 
                 this.gotasdeagua.add(nuevaGota);
             });
-        
-            };
     }
 
 
     update()
     {
-        
+        if (this.humedad == 20){
+            this.zanahoria = this.physics.add.image(Phaser.Math.Between(50, 400), Phaser.Math.Between(550, 600), 'Zanahoria').setScale(.3)
+            this.zanahoria.setCollideWorldBounds(true);
+            this.zanahoria.body.setCircle(300);
+            this.zanahoria.setOffset(-150,600);
+            this.zanahoria.setDepth(0);
+            this.zanahoria.setBounce(.5);
+            this.physics.add.collider(this.zanahoria, this.zanahoria);
+            this.humedad = 0;
+        }
     }
+
+}

@@ -10,22 +10,12 @@ export default class SceneD extends Phaser.Scene {
         super({key: 'SceneD'});
 
     }
-}
 
-export default class SceneC extends Phaser.Scene {
-
-    constructor()
-    {
-        super({key: 'SceneC'});
-
-    }
 
 
     preload()
     {
-      
         console.log('llegó a SceneD');
-
     }
 
     create()
@@ -77,5 +67,4 @@ export default class SceneC extends Phaser.Scene {
 
 
     }
-
 }
