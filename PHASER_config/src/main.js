@@ -31,7 +31,11 @@ physics: {
     default: "arcade",
     arcade: {
         debug: false,
+<<<<<<< Updated upstream
         gravity: { y: 1000 } // Con gravedad
+=======
+        gravity: { y: 1000 } // Sin gravedad
+>>>>>>> Stashed changes
     }
 }
 
