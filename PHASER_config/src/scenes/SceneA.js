@@ -23,7 +23,9 @@ export default class SceneA extends Phaser.Scene {
         this.load.image('TheFarm', 'farm.png'); 
         this.load.image('Nube', 'cloud.png'); 
         this.load.image('StoreOne', 'onecoin.png'); 
+
         this.load.image('Gota', 'water.png');
+
     }
 
     create() {
@@ -41,6 +43,13 @@ export default class SceneA extends Phaser.Scene {
         .setDepth(1)
         .setImmovable(true); // La hace estática para que no se mueva con colisiones
         this.TierraCultivo.body.allowGravity = false; 
+
+         //TierraCultivo
+         this.TierraCultivo = this.add.image(240, 700, 'TheFarm').setDisplaySize(450, 100); 
+
+         //Nubesita
+         this.Nubesita = this.add.image(240, 300, 'Nube').setScale(0.5);
+
 
          //StoreOne
          this.Tienda01 = this.add.image(1400, 520, 'StoreOne').setScale(0.45);         
@@ -68,6 +77,7 @@ export default class SceneA extends Phaser.Scene {
             .setInteractive() // Hacer la imagen interactiva
             .on('pointerdown', () => {
                 this.scene.start('SceneD'); // Menu de la tienda
+
             });   
 
         // Grupo de gotas
@@ -99,6 +109,7 @@ export default class SceneA extends Phaser.Scene {
                 this.gotasdeagua.add(nuevaGota);
             });
         
+            };
     }
 
 
@@ -106,5 +117,3 @@ export default class SceneA extends Phaser.Scene {
     {
         
     }
-
-}

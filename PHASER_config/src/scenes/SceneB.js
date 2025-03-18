@@ -16,8 +16,8 @@ export default class SceneB extends Phaser.Scene {
 
         this.load.path = './assets/imagenes/'; 
         this.load.image('MenuBunny', 'menubunnybutton.png'); 
-        this.load.image('MenuBunny', 'menufarm.png'); 
 
+        this.load.image('MenuBunny', 'menufarm.png'); 
     }
 
     create()
